@@ -43,24 +43,21 @@ public class Inventory : MonoBehaviour
     }
     bool CanAddItem(Item item)
     {
+        int freeSlots = 0;
+
         foreach (var items in currentItems)
         {
             if (items == null)
             {
-                if (item.Weight < currentWeight)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                freeSlots++;
             }
-            else
-            {
-                return false;
-            }
+            
         }
+        if (freeSlots > 0 && item.Weight < currentWeight)
+        {
+            return true;
+        }
+        else
         return false;
     }
     void AddItem(Item item)
